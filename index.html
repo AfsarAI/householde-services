@@ -10,10 +10,20 @@
 
 <body>
     <div id="app">
-        {{ msg }}
+        <div>
+            <p>{{msg}}</p>
+        </div>
+        <!-- Input field with placeholder -->
+        <div>
+            <input v-model="msg" :placeholder="'Enter your message here'" type="password" />
+        </div>
+        <!-- Submit button -->
+        <button @click="submitMessage">Submit</button>
+        <!-- Display the submitted message -->
+        <div v-if="submittedMsg">
+            You submitted: {{ submittedMsg }}
+        </div>
     </div>
-    <button>Say Hi</button>
-    <script src="vue.js"></script>
     <script src="app.js"></script>
 </body>
 
