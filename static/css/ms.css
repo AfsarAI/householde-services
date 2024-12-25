@@ -1,0 +1,105 @@
+
+
+.container,
+.content-section,
+.services-container,
+.service-card,
+.table-container {
+    background: linear-gradient(135deg, #ffb6c1, #e0ffff, #f5f5dc);
+    border-radius: 15px;
+    padding: 20px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 90%;
+    margin: 20px auto;
+    position: relative;
+   
+    overflow: hidden;
+}
+
+.services-container {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    margin: 20px;
+}
+
+
+.service-card {
+    background: linear-gradient(135deg, #f5f5dc, #e0ffff, #ffb6c1) !important;
+    border: 2px solid #fffdfd;
+}
+
+.service-card:hover {
+    transform: scale(1.05);
+   
+}
+
+.service-card h3 {
+    font-size: 24px;
+    color: #333;
+   
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+.service-card p {
+    font-size: 16px;
+    color: #666;
+    margin-bottom: 15px;
+    text-align: center;
+}
+
+.service-card .price,
+.service-card .time-required {
+    font-size: 18px;
+    font-weight: bold;
+    color: #2c7be5;
+   
+    text-align: center;
+}
+
+.service-card .edit-button {
+    display: block;
+    margin: 0 auto;
+    padding: 10px 20px;
+    background-color: #2c7be5;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    text-align: center;
+}
+
+.service-card .edit-button:hover {
+    background-color: #1b5bbf;
+}
+
+
+h1 {
+    text-align: center;
+    margin-top: 30px;
+    margin-bottom: 40px;
+    color: #444;
+    border-bottom: 2px solid #007bff;
+    padding-bottom: 5px;
+}
+
+
+.add-service-button {
+    background-color: #28a745;
+   
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 20px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.add-service-button:hover {
+    background-color: #218838;
+}

@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Professional-{{pro.id}} Dashboard - HomeWizard</title>
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="/static/css/body_nav.css" rel="stylesheet">
+  <link href="/static/css/p_dash.css" rel="stylesheet">
+  <link href="/static/css/modal.css" rel="stylesheet">
+
+  <style>
+    /* Initially hide the table and the "No Requests" message */
+    .custom-table-container table {
+      display: none;
+    }
+
+    #no-requests-message {
+      display: none;
+    }
+
+    /* Make table visible when there are rows */
+    .custom-table-container .visible {
+      display: table;
+    }
+  </style>
+
+</head>
+
+<body>
+
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-dark">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="{{ url_for('home')}}"><ion-icon name="home"
+          style="font-size: 25px;"></ion-icon>HomeWizard</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto align-items-center">
+          <li class="nav-item me-2">
+            <a class="nav-link active" href="{{ url_for('dashboard', role=role, id=pro.id) }}"><strong>Main
+                Dashboard</strong></a>
+          </li>
+          <li class="nav-item me-2">
+            <a class="nav-link" href="{{ url_for('summary', role=role, id=pro.id) }}">Summary</a>
+          </li>
+          <li class="nav-item me-2">
+            <a class="nav-link" data-bs-toggle="tooltip" data-bs-placement="bottom"
+              title="Click Here and Search by Filter" id="searchButton" onclick="toggleSearchBox(event)">
+              <ion-icon name="search-sharp" style="font-size: 30px; vertical-align: middle;"></ion-icon>
+            </a>
+          </li>
+          <li class="nav-item me-2">
+            <a class="nav-link" href="{{ url_for('profile', id=pro.id, role=role)}}" data-bs-toggle="tooltip"
+              data-bs-placement="bottom" title="Your Profile">
+              <ion-icon name="person-circle-outline" style="font-size: 30px; vertical-align: middle;"></ion-icon>
+            </a>
+          </li>
+          <li class="nav-item me-2">
+            <form action="{{ url_for('logout', role=role, id=pro.id) }}" method="POST" class="d-inline">
+              <button class="btn btn-outline-danger" type="submit">Logout</button>
+            </form>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Flash Messages -->
+  {% with messages = get_flashed_messages(with_categories=true) %}
+  {% if messages %}
+  <div class="mt-2 d-flex justify-content-center">
+    <div style="width: auto;">
+      {% for category, message in messages %}
+      <div class="alert alert-{{ category }} alert-dismissible fade show text-center" role="alert">
+        {{ message }}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+  {% endif %}
+  {% endwith %}
+
+
+  <!-- Floating Search Box (initially hidden) -->
+  <div class="floating-search-box" id="floatingSearchBox" style="display: none;">
+    <button type="button" class="btn-close" onclick="toggleSearchBox(event)"
+      style="position: absolute; top: 10px; right: 10px;"></button>
+
+    <form action="{{ url_for('dashboard', role=role, id=pro.id) }}" method="GET" onsubmit="prepareSearchQuery(event)">
+      <div class="mb-3">
+        <label for="filter_by" class="form-label"><b>Search by:</b></label>
+        <select name="filter_by" id="filter_by" class="form-select" onchange="showAppropriateInput()">
+          <option value="">Select Filter</option>
+          <option value="customer_name">Customer Name</option>
+          <option value="status">Service Status</option>
+          <option value="date">Date</option>
+          <option value="location">Location</option>
+        </select>
+      </div>
+
+      <!-- Customer Name Input -->
+      <div class="mb-3" id="name_field" style="display: none;">
+        <input type="text" class="form-control" id="name_input" placeholder="Enter Customer Name">
+      </div>
+
+      <!-- Service Status Input -->
+      <div class="mb-3" id="status_field" style="display: none;">
+        <input type="text" class="form-control" id="status_input" placeholder="Enter Service Status">
+      </div>
+
+      <!-- Date Input -->
+      <div class="mb-3" id="date_field" style="display: none;">
+        <input type="date" class="form-control" id="date_input">
+      </div>
+
+      <!-- Location Input -->
+      <div class="mb-3" id="location_field" style="display: none;">
+        <input type="text" class="form-control" id="location_input" placeholder="Enter Location">
+      </div>
+
+      <!-- Hidden Input for Final Search Query -->
+      <input type="hidden" name="search" id="final_search_query">
+
+      <button type="submit" class="btn btn-primary" id="submitBtn" style="display: none;">Search</button>
+    </form>
+
+  </div>
+
+
+  <!-- Dashboard Content -->
+  <div class="container mt-4 content-section">
+
+    <h2 class="main-heading">Professional Dashboard</h2>
+    {% if service %}
+    <!-- Display Today's Services if the Professional is Not Blocked -->
+    {% if pro.status.value != 'Blocked' %}
+    <div class="table-container custom-table-container example">
+      <h4 id="table-title">Today's Requests</h4>
+      <table class="table table-striped">
+        {% if requests %}
+        <thead class="table-dark">
+          <tr>
+            <th>ID</th>
+            <th>Customer Name</th>
+            <th>Contact Phone</th>
+            <th>Location</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody id="requests-table-body">
+          {% for r in requests %}
+          <tr id="request-{{ r.id }}">
+            <td>{{ r.id }}</td>
+            <td>{{ r.customer.full_name }}</td>
+            <td>{{ r.customer.phone_number }}</td>
+            <td>{{ r.customer.address }}, {{r.customer.pincode}}</td>
+            <td>
+              <div class="d-flex justify-content-center gap-2">
+                <form action="{{ url_for('accept_service_request', role=role, id=pro.id, request_id=r.id) }}"
+                  method="POST">
+                  <button type="submit" class="btn btn-success">Accept</button>
+                </form>
+                <!-- Reject Button -->
+                <button class="btn btn-danger" onclick="rejectRequest('{{ r.id }}', '{{ pro.id }}')">Ignore</button>
+              </div>
+            </td>
+          </tr>
+          {% endfor %}
+        </tbody>
+        {% else %}
+        <!-- Message for no todayd service request -->
+        <p class="text-center text-danger">Today is no service requests!</p>
+        {% endif %}
+      </table>
+      <h2 id="no-requests-message" class="text-center text-danger" style="display: none;">No service requests to
+        display!</h2>
+    </div>
+
+
+    <!-- ongoing Services Section -->
+    <div class="table-container">
+      <h4>Today's Ongoing Service</h4>
+      <table class="table table-striped">
+        {% if ongoing_services %}
+        <thead class="table-dark">
+          <tr>
+            <th>ID</th>
+            <th>Customer Name</th>
+            <th>Contact Phone</th>
+            <th>Location</th>
+            <th>Date</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for os in ongoing_services %}
+          <tr>
+            <td>{{ os.id }}</td>
+            <td>{{ os.customer.full_name }}</td>
+            <td>{{ os.customer.phone_number }}</td>
+            <td>{{ os.customer.address }}, {{ os.customer.pincode }}</td>
+            <td>{{ os.formatted_date_of_request }}</td>
+            <td>
+              <form method="POST" action="{% if os.service_status.value == 'Assigned' %}
+                {{ url_for('start_service_p', role=role, id=pro.id, service_id=os.id) }}
+              {% elif os.service_status.value == 'Ongoing' %}
+                {{ url_for('end_service_p', role=role, id=pro.id, service_id=os.id) }}
+              {% endif %}">
+                {% if os.service_status.value == 'Assigned' %}
+                <button type="submit" class="btn btn-success">Service Started?</button>
+                {% elif os.service_status.value == 'Ongoing' %}
+                <button type="submit" class="btn btn-danger">End Service</button>
+                {% endif %}
+              </form>
+
+            </td>
+          </tr>
+          {% endfor %}
+        </tbody>
+        {% else %}
+        <!-- Message for havent done any service yet -->
+        <h2 class="text-center text-danger">You are not doing any service now!</h2>
+        {% endif %}
+      </table>
+    </div>
+    {% else %}
+    <h2 class="text-center text-danger">You have been blocked and cannot view today's services. Only closed services
+      are visible.</h2>
+    {% endif %}
+
+    <!-- Closed Services Section (Visible to All Professionals) -->
+    <div class="mt-5">
+      <h4>Closed Services</h4>
+      <table class="table table-striped">
+        {% if closed_services %}
+        <thead class="table-dark">
+          <tr>
+            <th>ID</th>
+            <th>Customer Name</th>
+            <th>Contact Phone</th>
+            <th>Location</th>
+            <th>Date</th>
+            <th>Rating</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for cs in closed_services %}
+          <tr>
+            <td>{{ cs.id }}</td>
+            <td>{{ cs.customer.full_name }}</td>
+            <td>{{ cs.customer.phone_number }}</td>
+            <td>{{ cs.customer.address }}, {{ cs.customer.pincode }}</td>
+            <td>{{ cs.formatted_date_of_completion }}</td>
+            <td>
+              <!-- Show Rating -->
+              {% set rating = cs.rating if cs.rating is not none else 0 %}
+              {% for _ in range(rating) %}
+              <ion-icon name="star" style="color: #0000ff;"></ion-icon>
+              {% endfor %}
+              {% for _ in range(5 - rating) %}
+              <ion-icon name="star-outline" style="color: #0000ff;"></ion-icon>
+              {% endfor %}
+            </td>
+          </tr>
+          {% endfor %}
+        </tbody>
+        {% else %}
+        <!-- Message for havent done any service yet -->
+        <h2 class="text-center text-danger">You haven't done any service yet!</h2>
+        {% endif %}
+      </table>
+    </div>
+
+    {% else %}
+    <!-- Message for havent done any service yet -->
+    <h2 class="text-center text-danger">You Service has been deleted by admin!</h2>
+    {% endif %}
+
+  </div>
+
+  <script>
+    // professionals js 
+    // Reject Request Function
+    function rejectRequest(requestId, proId) {
+      try {
+        console.log(`Rejecting request with ID: ${requestId} for professional ID: ${proId}`);
+
+        // Fetch rejected requests for the specific professional from sessionStorage
+        let rejectedRequests = JSON.parse(sessionStorage.getItem(`rejectedRequests-${proId}`)) || [];
+
+        // Add the current request ID if not already in the list
+        if (!rejectedRequests.includes(requestId)) {
+          rejectedRequests.push(requestId);
+        }
+
+        // Save the updated list back to sessionStorage for that professional
+        sessionStorage.setItem(`rejectedRequests-${proId}`, JSON.stringify(rejectedRequests));
+
+        // Hide the rejected row dynamically
+        let row = document.getElementById(`request-${requestId}`);
+        if (row) {
+          row.remove();
+          console.log(`Request with ID: ${requestId} removed from the table`);
+        } else {
+          console.log(`Request row with ID: ${requestId} not found`);
+        }
+
+        // Check if the table has remaining rows and update visibility
+        updateTableVisibility();
+      } catch (err) {
+        console.error("Error in rejectRequest:", err);
+      }
+    }
+
+    // Update Table and Message Visibility
+    function updateTableVisibility() {
+      const table = document.querySelector(".custom-table-container table");
+      const tableBody = document.getElementById("requests-table-body");
+      const noRequestsMessage = document.getElementById("no-requests-message");
+
+      if (tableBody && tableBody.children.length > 0) {
+        // Show the table and hide the "No Requests" message
+        table.classList.add("visible");
+        noRequestsMessage.style.display = "none";
+      } else {
+        // Hide the table and show the "No Requests" message
+        table.classList.remove("visible");
+        noRequestsMessage.style.display = "block";
+      }
+    }
+
+    // Filter Requests on Page Load
+    function filterRequestsOnLoad(proId) {
+      try {
+        // Fetch rejected requests for the specific professional from sessionStorage
+        let rejectedRequests = JSON.parse(sessionStorage.getItem(`rejectedRequests-${proId}`)) || [];
+
+        // Hide rows dynamically for rejected requests
+        rejectedRequests.forEach(requestId => {
+          let row = document.getElementById(`request-${requestId}`);
+          if (row) {
+            row.remove();
+          }
+        });
+
+        // Update the table visibility after filtering
+        updateTableVisibility();
+      } catch (err) {
+        console.error("Error in filterRequestsOnLoad:", err);
+      }
+    }
+
+    // Trigger filter function on page load
+    document.addEventListener("DOMContentLoaded", () => {
+      const proId = '{{ pro.id }}';  // Make sure pro.id is passed from the server-side template engine (e.g., Jinja)
+      filterRequestsOnLoad(proId); // Call your filtering function with the professional's ID
+    });
+
+  </script>
+  <!-- file js -->
+  <script src="/static/js/all.js" defer></script>
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+  <!-- Icons Scripts -->
+  <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+  <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+</body>
+
+</html>

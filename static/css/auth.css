@@ -1,0 +1,99 @@
+.container {
+    margin-top: 30px;
+   
+    margin-bottom: 30px;
+   
+}
+
+
+
+.card {
+   
+    box-shadow: 0 2px 20px rgba(0, 0, 0, 0.2);
+    border-radius: 15px;
+    position: relative;
+    z-index: 1;
+}
+
+
+.card-header {
+    background-color: #347afd;
+    color: white;
+    text-align: center;
+    font-size: 24px;
+    font-weight: bold;
+    border-top-left-radius: 15px !important;
+    border-top-right-radius: 15px !important;
+}
+
+
+.card-body {
+    background: linear-gradient(135deg, #ffb6c1, #e0ffff, #f5f5dc);
+    padding: 20px;
+    color: #444;
+}
+
+
+.form-control {
+    border: 1px solid #415a5d;
+    border-radius: 0.25rem;
+    font-size: 16px;
+    padding: 10px;
+}
+
+
+.form-label {
+    font-weight: bold;
+}
+
+
+.btn-primary {
+    background-color: #2c7be5;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    padding: 10px 20px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.btn-primary:hover {
+    background-color: #1b5bbf;
+}
+
+
+.card-footer {
+    background-color: #ff7e5f;
+    text-align: center;
+    color: white;
+    border-bottom-left-radius: 15px !important;
+    border-bottom-right-radius: 15px !important;
+}
+
+
+
+
+
+input:invalid {
+    border: 2px solid red;
+}
+
+input:valid {
+    border: 2px solid green;
+}
+
+textarea:invalid {
+    border: 2px solid red;
+}
+
+textarea:valid {
+    border: 2px solid green;
+}
+
+select:invalid {
+    border: 2px solid red;
+}
+
+select:valid {
+    border: 2px solid green;
+}

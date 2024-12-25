@@ -1,0 +1,49 @@
+.main-heading {
+    color: #333;
+    text-align: center;
+    margin: 20px 0;
+}
+
+.content-section,
+.card,
+.container,
+.profile-content {
+    background: linear-gradient(135deg, #ffb6c1, #e0ffff, #f5f5dc);
+    border: 1px solid #ddd;
+    border-radius: 15px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    width: 90%;
+    max-width: 90%;
+    margin: 20px auto;
+    position: relative;
+    z-index: 1;
+    overflow: visible;
+}
+
+.card {
+    background: linear-gradient(135deg, #f5f5dc, #e0ffff, #ffb6c1) !important;
+}
+
+.text-center h4 {
+    margin-top: 15px;
+    margin-bottom: 25px;
+   
+}
+
+img.hover-effect {
+    border: 3px solid #007bff;
+    border-radius: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+    position: relative;
+    z-index: 1;
+}
+
+img.hover-effect:hover {
+    transform: scale(1.5);
+    transform-origin: center;
+    z-index: 1000;
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.3);
+}

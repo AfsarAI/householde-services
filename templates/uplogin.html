@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login - HomeWizard</title>
+
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.10.3/font/bootstrap-icons.min.css"
+    rel="stylesheet">
+
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="/static/css/body_nav.css" rel="stylesheet">
+  <link href="/static/css/auth.css" rel="stylesheet">
+  <link href="/static/css/modal.css" rel="stylesheet">
+</head>
+
+<body class="logbody">
+
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-dark">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="{{ url_for('home')}}"><ion-icon name="home"
+          style="font-size: 25px;"></ion-icon>HomeWizard</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto align-items-center">
+          <li class="nav-item">
+            <a class="nav-link" href="{{ url_for('home')}}">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="{{ url_for('login') }}">Login</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/signup/modal" data-bs-toggle="modal" data-bs-target="#signupModal">Signup</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Flash Messages -->
+  {% with messages = get_flashed_messages(with_categories=true) %}
+  {% if messages %}
+  <div class="mt-2 d-flex justify-content-center">
+    <div style="width: auto;">
+      {% for category, message in messages %}
+      <div class="alert alert-{{ category }} alert-dismissible fade show text-center" role="alert">
+        {{ message }}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+  {% endif %}
+  {% endwith %}
+
+
+  <!-- Login Form -->
+  <div class="container position-absolute top-50 start-50 translate-middle col-md-4">
+    <div class="card">
+      <div class="card-header">
+        <h2 class="text-center">Login to your account</h2>
+      </div>
+      <div class="justify-content-center">
+        <div class="card-body">
+          <form action="{{ url_for('login')}}" method="POST">
+            <div class="mb-3">
+              <label for="email" class="form-label">Email address</label>
+              <input type="email" class="form-control" id="email" name="email" placeholder="name@example.com" required>
+            </div>
+            <div class="mb-3">
+              <label for="password" class="form-label">Password</label>
+              <input type="password" minlength="5" maxlength="10" class="form-control" id="password" name="password"
+                placeholder="Enter your password" required>
+              <a href="#" data-bs-toggle="modal" data-bs-target="#forgetPasswordModal">Forgot Password?</a>
+            </div>
+            <div class="mb-3">
+              <label for="login-type-name" class="form-label">Login as a</label>
+              <select class="form-select" id="role" name="role" required>
+                <option value="">Select a type</option>
+                <option value="user">User</option>
+                <option value="professional">Professional</option>
+              </select>
+            </div>
+            <div class="mb-3">
+              <button type="submit" class="btn btn-primary w-100">Login</button>
+            </div>
+          </form>
+        </div>
+        <div class="card-footer">
+          <p class="text-center">Don't have an account? <a href="#" data-bs-toggle="modal"
+              data-bs-target="#signupModal">Register</a></p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- Forget Password Modal -->
+  <div class="modal fade" id="forgetPasswordModal" tabindex="-1" aria-labelledby="forgetPasswordModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="forgetPasswordModalLabel">Reset Password</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <form method="POST" action="{{ url_for('reset_password')}}">
+          <div class="modal-body">
+            <div class="mb-3">
+              <label class="form-label">You are a?</label>
+              <div class="d-flex align-items-center gap-3">
+                <div class="form-check">
+                  <input class="form-check-input" type="radio" name="role" id="userRole" value="user" required>
+                  <label class="form-check-label" for="userRole">User</label>
+                </div>
+                <div class="form-check">
+                  <input class="form-check-input" type="radio" name="role" id="professionalRole" value="professional"
+                    required>
+                  <label class="form-check-label" for="professionalRole">Professional</label>
+                </div>
+              </div>
+            </div>
+
+            <div class="mb-3">
+              <label for="reset-email" class="form-label">Email address</label>
+              <input type="email" class="form-control" id="email" name="email" placeholder="Enter your email" required>
+            </div>
+            <div class="mb-3">
+              <label for="new-password" class="form-label">New Password</label>
+              <input type="password" minlength="5" maxlength="10" class="form-control" id="new-password"
+                name="new_password" placeholder="Enter new password" required>
+            </div>
+            <div class="mb-3">
+              <label for="confirm-password" class="form-label">Confirm New Password</label>
+              <input type="password" minlength="5" maxlength="10" class="form-control" id="confirm-password"
+                name="confirm_password" placeholder="Confirm new password" required>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            <button type="submit" class="btn btn-primary">Reset Password</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- Signup Modal -->
+  <div class="modal fade" id="signupModal" tabindex="-1" aria-labelledby="signupModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Choose Signup Type</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body text-center">
+          <a href="{{ url_for('user_register') }}" class="btn btn-success m-2">User Signup</a>
+          <a href="{{ url_for('professional_register') }}" class="btn btn-info m-2">Professional Signup</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- file js -->
+  <script src="/static/js/all.js" defer></script>
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+
+  <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+  <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+</body>
+
+</html>

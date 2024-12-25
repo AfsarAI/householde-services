@@ -1,0 +1,150 @@
+
+body.modal-open::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    backdrop-filter: blur(10px);
+    background-color: rgba(0, 0, 0, 0.3);
+    z-index: 1040;
+}
+
+
+.modal.fade .modal-dialog {
+    transform: translate(0, -50px);
+    transition: transform 0.3s ease-out;
+}
+
+.modal.show .modal-dialog {
+    transform: translate(0, 0);
+}
+
+
+.modal-container {
+    margin-top: 20px;
+   
+}
+
+
+.modal-content {
+    background: linear-gradient(135deg, #ffb6c1, #e0ffff, #f5f5dc);
+    border-radius: 15px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+    color: #333;
+}
+
+
+.modal-header {
+    background-color: #347afd;
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+    color: white;
+}
+
+
+.modal-title {
+    font-weight: bold;
+    font-size: 24px;
+}
+
+
+.modal-header .close {
+    color: white;
+    font-size: 28px;
+    opacity: 0.8;
+}
+
+.modal-header .close:hover {
+    opacity: 1;
+}
+
+
+.modal-body {
+    background: linear-gradient(135deg, #91eae4, #feb47b);
+    padding: 20px;
+    color: #444;
+    font-size: 16px;
+}
+
+
+.modal-content form label {
+    font-weight: bold;
+    color: #555;
+}
+
+.modal-content form input[type="text"],
+.modal-content form input[type="email"],
+.modal-content form input[type="password"],
+.modal-content form textarea,
+.modal-content form select {
+    width: 100%;
+    font-size: 16px;
+    border: 1px solid #415a5d;
+   
+    border-radius: 5px;
+    background-color: #fff;
+    color: #333;
+    transition: border-color 0.3s ease;
+}
+
+.modal-content form input:focus,
+.modal-content form textarea:focus,
+.modal-content form select:focus {
+    border-color: #007bff;
+    outline: none;
+}
+
+
+.modal-footer {
+    background-color: #ff7e5f;
+    border-bottom-left-radius: 15px;
+    border-bottom-right-radius: 15px;
+    padding: 15px;
+}
+
+
+.modal-footer .btn {
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    transition: background-color 0.3s;
+}
+
+
+
+
+
+
+#loginModal .modal-body {
+    border-bottom-left-radius: 15px;
+    border-bottom-right-radius: 15px;
+    overflow: hidden;
+}
+
+
+#signupModal .modal-body {
+    border-bottom-left-radius: 15px;
+    border-bottom-right-radius: 15px;
+    overflow: hidden;
+}
+
+
+
+.floating-search-box {
+    position: absolute;
+    top: 65px;
+   
+    margin-right: 80px;
+    right: 0;
+   
+    background: linear-gradient(135deg, #f1f1b8, #469696, #ee586e);
+    padding: 10px;
+    border-radius: 8px;
+    box-shadow: 2px 6px 10px rgba(0, 0, 0, 0.8);
+    display: none;
+   
+    width: 250px;
+    z-index: 1060;
+  }

@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome to HomeWizard</title>
+
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.10.3/font/bootstrap-icons.min.css"
+        rel="stylesheet">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/static/css/body_nav.css" rel="stylesheet">
+    <link rel="stylesheet" href="/static/css/home.css">
+    <link href="/static/css/modal.css" rel="stylesheet">
+</head>
+
+<body id="body">
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="{{ url_for('home') }}"><ion-icon name="home"
+                    style="font-size: 25px;"></ion-icon>HomeWizard</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto align-items-center">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="{{ url_for('home') }}">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url_for('login') }}" data-bs-toggle="modal"
+                            data-bs-target="#loginModal">Login</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" data-bs-toggle="modal" data-bs-target="#signupModal">Signup</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url_for('contact')}}">Contact</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-section position-relative" id="heroSection">
+        <div class="overlay"></div>
+        <div class="hero-content">
+            <h1>Welcome to HomeWizard</h1>
+            <p>Your one-stop solution for all household needs</p>
+            <a href="{{ url_for('login') }}" class="btn btn-primary btn-lg" data-bs-toggle="modal"
+                data-bs-target="#loginModal">Get
+                Started</a>
+            <a href="#about" class="btn btn-outline-light btn-lg">Learn More</a>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6">
+                    <h2>About Us</h2>
+                    <p>
+                        Welcome to <b>HomeWizard</b>, your one-stop solution for all your home service needs.
+                        Whether it's
+                        plumbing, electrical repairs, cleaning, or any other household maintenance task, we are here to
+                        connect you
+                        with skilled and reliable professionals. Our platform is designed to make your life easier by
+                        providing
+                        quick and efficient services right at your doorstep.<br>
+                        <b><i>HomeWizard</i></b> offers a wide array of services to ensure that every corner of your
+                        home is well
+                        taken care of. From fixing a leaky faucet to deep cleaning your entire house, our experts are
+                        just a click
+                        away. We pride ourselves on the quality and professionalism of our service providers, making
+                        sure every job
+                        is completed to your satisfaction.<br>
+                        Our platform is easy to use for both customers and service professionals. As a user, you can
+                        sign up, log
+                        in, and book the service you need at your convenience. You'll have access to trusted and
+                        verified
+                        professionals who will complete the job in a timely and professional manner. No more wasting
+                        time searching
+                        for service providers or worrying about the quality of work!<br>
+                        For those looking to offer their services, HomeWizard provides an opportunity to
+                        grow your
+                        business. Skilled professionals can sign up, create a profile, and start receiving job requests
+                        from
+                        customers in their area. We offer a hassle-free platform that connects you directly with
+                        customers, so you
+                        can focus on delivering excellent service.<br>
+                        With HomeWizard, we aim to bring convenience, trust, and satisfaction to every
+                        household.
+                        Whether you're a homeowner looking for reliable services or a professional seeking new
+                        opportunities, our
+                        platform is designed to meet all your needs.<br>
+                        <strong><i>Join us today and experience the ease and efficiency of HomeWizard!</i></strong>
+                    </p>
+                </div>
+                <div class="col-lg-6">
+                    <img src="{{ url_for('static', filename='img/household.png') }}" alt="About Us Image" class="about-img img-fluid rounded">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="bg-light py-5">
+        <div class="container">
+            <h2 class="text-center mb-4">Our Top Services</h2>
+            <div class="row text-center">
+                <div class="col-md-4">
+                    <div class="card shadow-sm p-3 mb-5 bg-white rounded">
+                        <div class="card-body">
+                            <h5 class="card-title">Plumbing</h5>
+                            <p class="card-text">Experienced professionals for all your plumbing needs.</p>
+                            <a href="/login" class="btn btn-primary" data-bs-toggle="modal"
+                                data-bs-target="#loginModal">Book Now</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card shadow-sm p-3 mb-5 bg-white rounded">
+                        <div class="card-body">
+                            <h5 class="card-title">Electrical</h5>
+                            <p class="card-text">Certified electricians to keep your home safe and powered.</p>
+                            <a href="/login" class="btn btn-primary" data-bs-toggle="modal"
+                                data-bs-target="#loginModal">Book Now</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card shadow-sm p-3 mb-5 bg-white rounded">
+                        <div class="card-body">
+                            <h5 class="card-title">Cleaning</h5>
+                            <p class="card-text">Get professional cleaning services for spotless results.</p>
+                            <a href="/login" class="btn btn-primary" data-bs-toggle="modal"
+                                data-bs-target="#loginModal">Book Now</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Signup Modal -->
+    <div class="modal fade" id="signupModal" tabindex="-1" aria-labelledby="signupModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Choose Signup Type</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body text-center">
+                    <a href="{{url_for('user_register')}}" class="btn btn-success m-2">User Signup</a>
+                    <a href="{{ url_for('professional_register') }}" class="btn btn-info m-2">Professional Signup</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Login Modal -->
+    <div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="loginModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Choose Login Type</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body text-center">
+                    <a href="{{url_for('admin_login')}}" class="btn btn-danger m-2">Admin Login</a>
+                    <a href="{{ url_for('login')}}" class="btn btn-success m-2">User/Professional Login</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2024 HomeWizard. All Rights Reserved.</p>
+    </footer>
+
+
+    <!-- file js -->
+    <script src="/static/js/all.js"></script>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+</body>
+
+</html>

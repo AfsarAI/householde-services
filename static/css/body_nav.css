@@ -1,0 +1,107 @@
+
+html,
+body {
+    font-family: 'Tahoma', sans-serif;  
+    overflow-x: hidden;
+    user-select: text;
+    caret-color: transparent;
+}
+
+
+input, textarea {
+    user-select: text;
+    caret-color: auto;
+}
+
+
+body {
+    margin: 0;
+    height: 100vh;
+    overflow-y: auto;
+    background: linear-gradient(120deg, #ff7e5f, #feb47b, #86a8e7, #91eae4);
+    animation: gradientAnimation 15s ease infinite;
+    position: relative;
+}
+
+
+@keyframes gradientAnimation {
+    0% {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+
+.star-field {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    pointer-events: none;
+    z-index: -1;
+    animation: starAnimation 30s infinite linear;
+    padding-right: 5px;
+}
+
+.star {
+    position: absolute;
+    background-color: white;
+    border-radius: 50%;
+    animation: starMove 10s linear infinite;
+}
+
+@keyframes starMove {
+    0% {
+        transform: translateX(0) translateY(0);
+    }
+
+    100% {
+        transform: translateX(-50px) translateY(-50px);
+    }
+}
+
+
+
+.navbar {
+    background-color: #343a40;
+   
+    z-index: 0;
+    position: relative;
+}
+
+.navbar-brand {
+    color: #ffdd57;
+}
+
+.navbar .nav-link {
+    color: #fff;
+   
+    cursor: pointer;
+    transition: color 0.3s ease;
+   
+    z-index: 1;
+}
+
+.navbar .nav-link.active {
+    color: #ffdd57;
+   
+}
+
+.navbar .nav-link:hover {
+    color: #ffdd57;
+   
+}
+
+input[type="search"]::-webkit-search-cancel-button {
+    cursor: pointer;
+   
+}
