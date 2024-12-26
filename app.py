@@ -12,7 +12,7 @@ def init_app():
     app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///household.db"
     app.config['PERMANENT_SESSION_LIFETIME'] = timedelta(minutes=60)
 
-    app.config['UPLOAD_FOLDER'] = r'C:\Users\moham\OneDrive\Desktop\Project Files\uploads'
+    app.config['UPLOAD_FOLDER'] = 'static/uploads'
     app.config['MAX_CONTENT_LENGTH'] = 25 * 1024 * 1024
     os.makedirs(app.config['UPLOAD_FOLDER'], exist_ok=True)
 

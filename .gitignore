@@ -1,0 +1,26 @@
+# Python
+*.py[cod]
+__pycache__/
+*.so
+
+# Virtual Environment
+.venv/
+
+# Environment Variables
+.env
+
+# IDE-specific
+.vscode/
+.idea/
+
+# Logs and Temporary Files
+*.log
+*.tmp
+
+# OS-specific
+.DS_Store
+Thumbs.db
+
+# Others
+*.swp
+*.bak

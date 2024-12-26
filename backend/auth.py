@@ -13,7 +13,7 @@ import os
 # Image files serve karne ke liye route
 @app.route('/static/img/<path:filename>')
 def uploaded_file_body(filename):
-    images_folder = r'C:\Users\moham\OneDrive\Desktop\Project Files\images'
+    images_folder = 'static/uploads'
     return send_from_directory(images_folder, filename)
 
 
