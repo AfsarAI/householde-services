@@ -2,7 +2,7 @@ from flask import Flask
 from datetime import timedelta
 from backend.models import *
 import os
-#here all setups
+
 app = None
 
 def init_app():
@@ -47,3 +47,6 @@ from backend.profile import *
 
 if __name__ == "__main__":
     app.run(debug=True)
+
+
+#just try???
