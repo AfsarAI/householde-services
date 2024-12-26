@@ -1,4 +1,4 @@
-from flask import Flask # type: ignore
+from flask import Flask
 from datetime import timedelta
 from backend.models import *
 import os
