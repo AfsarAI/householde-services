@@ -2,9 +2,10 @@ from flask import Flask
 from datetime import timedelta
 from backend.models import *
 import os
-#hi users
-#sessconssss
+
+
 app = None
+
 
 def init_app():
     app = Flask(__name__)
