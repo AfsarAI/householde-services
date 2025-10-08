@@ -1,6 +1,7 @@
-# 🏠 A-Z Household Services - A Flask Web Application
+# 🏠 A-Z Household Services  
+### A Flask-Based Multi-User Household Services Platform
 
-**A comprehensive multi-user platform connecting customers with skilled professionals for various household needs. This project was developed as part of the Modern Application Development (MAD-1) course.**
+A comprehensive **web application** connecting customers with skilled professionals for various household needs — developed as part of the **Modern Application Development (MAD-1)** course at **IIT Madras**.
 
 ---
 
@@ -11,63 +12,77 @@
   <img src="https://img.shields.io/badge/Frontend-Bootstrap-purple.svg" alt="Bootstrap">
 </p>
 
+---
+
 ## 🎥 Project Demo Video
 
-A full video explanation and demo of the project is available here:
-
-**[📺 Watch the Project Explanation Video Here]** *(<- Paste your YouTube video link here)*
+A full video explanation and demo of the project is available here:  
+👉 **[📺 Watch the Project Demo Video](<Your YouTube Video Link>)**
 
 ---
 
 ## ✨ Key Features
 
-This application is packed with features designed to provide a seamless experience for all user types:
+This application provides a seamless experience for all user types:
 
-* [cite_start]**👤 Multi-User Authentication System:** Separate registration and login portals for **Customers**, **Professionals**, and an **Admin** with secure session management[cite: 5, 153].
-* [cite_start]**🛠️ Service Management:** Enables customers to browse and book services, and track their status from request to completion[cite: 4, 5, 154].
-* [cite_start]**📂 File Upload Support:** Professionals can upload their resumes and certifications to showcase their qualifications[cite: 26, 157].
-* [cite_start]**📱 Responsive & Modern UI:** Built with **Bootstrap** for a fully responsive, mobile-friendly design[cite: 8, 16, 155]. [cite_start]The UI is enhanced with gradient backgrounds and star animations for a better user experience[cite: 15, 17, 156].
-* [cite_start]**⚙️ Dynamic & Robust Backend:** Built with the **Flask** framework and **SQLAlchemy** to handle all business logic and database management[cite: 8, 13, 16].
+- **👤 Multi-User Authentication System**  
+  Separate registration and login portals for **Customers**, **Professionals**, and **Admin**, with secure session management.
+
+- **🛠️ Service Management**  
+  Customers can browse and book services and track their status from request to completion.
+
+- **📂 File Upload Support**  
+  Professionals can upload resumes and certifications to showcase their qualifications.
+
+- **📱 Responsive & Modern UI**  
+  Built with **Bootstrap** for a fully responsive, mobile-friendly design. The UI is enhanced with gradient backgrounds and subtle animations for a better user experience.
+
+- **⚙️ Dynamic & Robust Backend**  
+  Developed using **Flask** and **SQLAlchemy** to handle all business logic and database operations.
 
 ---
 
 ## 💻 Tech Stack & Architecture
 
-The application follows a standard web architecture using the following technologies:
-
-* [cite_start]**Backend:** Python, Flask, SQLAlchemy [cite: 8, 13]
-* [cite_start]**Database:** SQLite [cite: 8, 14]
-* [cite_start]**Frontend:** HTML, CSS, JavaScript, Jinja2, Bootstrap [cite: 8, 13, 15]
-* [cite_start]**Architecture:** The code is organized into folders for backend logic (`controllers`, `models`), static assets (`css`, `js`, `images`), and UI templates, with a central `app.py` file to run the application[cite: 143, 144, 146, 147, 148]. [cite_start]The SQLite database is stored in the `instance` folder[cite: 150].
+| Layer | Technology Used |
+|-------|----------------|
+| **Backend** | Python, Flask, SQLAlchemy |
+| **Frontend** | HTML, CSS, JavaScript, Jinja2, Bootstrap |
+| **Database** | SQLite |
+| **Architecture** | MVC-style structure with `controllers`, `models`, `templates`, and `static` assets; main app entry via `app.py` |
 
 ---
 
 ## 🗂️ Database Design
 
-[cite_start]The database schema is normalized to minimize redundancy and ensure data integrity[cite: 32]. It consists of the following core tables:
+The database is designed to minimize redundancy and maintain data integrity. Core tables include:
 
-* [cite_start]**Admin Table:** Stores admin credentials and information[cite: 20, 21].
-* [cite_start]**Users Table:** Stores customer details and credentials[cite: 22, 23].
-* [cite_start]**Professionals Table:** Stores service professional details, including experience and resume filenames[cite: 24, 25, 26].
-* [cite_start]**Services Table:** Contains all available services, their descriptions, and base prices[cite: 27, 28].
-* [cite_start]**Service Requests Table:** Manages the relationships between customers, professionals, and the services they book[cite: 29, 30].
+| Table | Purpose |
+|-------|---------|
+| **Admin** | Stores admin credentials and information |
+| **Users** | Stores customer details and credentials |
+| **Professionals** | Stores professional details, experience, and uploaded documents |
+| **Services** | Contains available services, descriptions, and pricing |
+| **Service Requests** | Tracks bookings and relationships between customers, professionals, and services |
 
-*An ER Diagram is available in the project report for a visual representation of table relationships.*
+*An ER diagram is included in the project report for a visual representation of table relationships.*
 
 ---
 
-## 🚀 Getting Started (Installation & Setup)
+## 🚀 Getting Started
 
-To get this application running on your local machine, follow these steps:
+Follow these steps to set up and run the project locally.
 
-### 1. Prerequisites
-Ensure you have **Python** and **pip** installed on your system.
+### 1️⃣ Prerequisites
+- Python 3.10+
+- pip
 
-### 2. Clone the Repository
+### 2️⃣ Clone the Repository
 ```bash
 git clone <your-repository-link>
 cd household-services-application
 ```
+
 ### 3. Create and Activate a Virtual Environment
 ```bash
 # For Windows
@@ -88,6 +103,7 @@ pip install -r requirements.txt
 ```bash
 python app.py
 ```
+---
 
 ### 6. Admin Access
 Use the default admin credentials for testing and initial setup.
@@ -96,7 +112,29 @@ Use the default admin credentials for testing and initial setup.
 | Email    | Admin@xyz.com       |
 | Password | Admin@123           |
 
-## 📜 Acknowledgement
-This project is an academic submission created to apply the theoretical concepts learned in the Modern Application Development (MAD-1) course.
+---
 
-⭐ *Developed by [Mohd Afsar]*  
+## 💬 Future Enhancements
+
+- Integration with more services and sub-categories
+- Email or SMS notifications for service updates
+- Option for customer reviews and ratings
+- Migrate to a more scalable database like PostgreSQL or MySQL
+
+---
+
+## 🏆 Credits
+
+| Role | Name |
+|------|------|
+| **Developer** | Mohd Afsar |
+| **Institution** | IIT Madras |
+| **Course** | Modern Application Development – 1 |
+
+---
+
+## 🧾 Acknowledgement
+
+This project is an academic submission created to apply the theoretical concepts learned in the **MAD-1** course.
+
+⭐ Developed with ❤️ by [Mohd Afsar]
