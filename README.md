@@ -17,7 +17,7 @@ A comprehensive **web application** connecting customers with skilled profession
 ## 🎥 Project Demo Video
 
 A full video explanation and demo of the project is available here:  
-👉 **[📺 Watch the Project Demo Video](<[Your YouTube Video Link](https://youtu.be/RlqG12MC_5Q?si=e0Qk-HBlvp2Gsj1q)>)**
+👉 **[[📺 Watch the Project Demo Video](https://youtu.be/RlqG12MC_5Q?si=e0Qk-HBlvp2Gsj1q)]**
 
 ---
 
