@@ -17,7 +17,7 @@ A comprehensive **web application** connecting customers with skilled profession
 ## 🎥 Project Demo Video
 
 A full video explanation and demo of the project is available here:  
-👉 **[📺 Watch the Project Demo Video](<Your YouTube Video Link>)**
+👉 **[📺 Watch the Project Demo Video](<[Your YouTube Video Link](https://youtu.be/RlqG12MC_5Q?si=e0Qk-HBlvp2Gsj1q)>)**
 
 ---
 
@@ -79,7 +79,7 @@ Follow these steps to set up and run the project locally.
 
 ### 2️⃣ Clone the Repository
 ```bash
-git clone <your-repository-link>
+git clone https://github.com/AfsarAI/householde-services.git
 cd household-services-application
 ```
 
