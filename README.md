@@ -91,6 +91,10 @@ python app.py
 
 ### 6. Admin Access
 Use the default admin credentials for testing and initial setup.
+```text
+Email:    Admin@xyz.com
+Password: Admin@123
+```
 
 ## 📜 Acknowledgement
 This project is an academic submission created to apply the theoretical concepts learned in the Modern Application Development (MAD-1) course.
